@@ -5,18 +5,18 @@
 	"gcm_sender_id": "1037478774141",
 	"gcm_user_visible_only": true,
 	"icons": [{
-			"src": "/a2hs/images/mobile180x180.png",
+			"src": "https://keenedge1.github.io/a2hs/images/mobile180x180.png",
 			"sizes": "192x192",
 			"type": "image/png"
 		}, {
-			"src": "/a2hs/images/mobile180x180.png",
+			"src": "https://keenedge1.github.io/a2hs/a2hs/images/mobile180x180.png",
 			"sizes": "512x512",
 			"type": "image/png"
 		}
 	],
 	"name": "projectQtest",
 	"short_name": "projectQtest",
-	"start_url": "/a2hs/",
+	"start_url": "https://keenedge1.github.io/a2hs/",
 	"theme_color": "#ffffff",
-	"scope": "/a2hs/"
+	"scope": "https://keenedge1.github.io/a2hs/"
 }
