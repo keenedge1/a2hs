@@ -5,18 +5,18 @@
 	"gcm_sender_id": "1037478774141",
 	"gcm_user_visible_only": true,
 	"icons": [{
-			"src": "/images/mobile180x180.png",
+			"src": "/a2hs/images/mobile180x180.png",
 			"sizes": "192x192",
 			"type": "image/png"
 		}, {
-			"src": "/images/mobile180x180.png",
+			"src": "/a2hs/images/mobile180x180.png",
 			"sizes": "512x512",
 			"type": "image/png"
 		}
 	],
 	"name": "projectQtest",
 	"short_name": "projectQtest",
-	"start_url": "/",
+	"start_url": "/a2hs",
 	"theme_color": "#ffffff",
-	"scope": "/"
+	"scope": "/a2hs"
 }
