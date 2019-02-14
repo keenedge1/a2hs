@@ -1,5 +1,6 @@
 console.log('Started', self);
 
+/*
 self.addEventListener('activate', function(event) {
   console.log('Activated', event);
 });
@@ -7,7 +8,7 @@ self.addEventListener('push', function(event) {
   console.log('Push message received', event);
   // TODO
 });
-
+*/
 
 
 var CACHE_NAME = 'my-site-cache-v1';
