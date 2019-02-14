@@ -16,7 +16,7 @@
 	],
 	"name": "projectQtest",
 	"short_name": "projectQtest",
-	"start_url": "/a2hs",
+	"start_url": "/a2hs/",
 	"theme_color": "#ffffff",
-	"scope": "/a2hs"
+	"scope": "/a2hs/"
 }
