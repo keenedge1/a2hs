@@ -17,7 +17,7 @@ if ('serviceWorker' in navigator) {
 
   if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('sw.js').then(function(registration) {
+    navigator.serviceWorker.register('/a2hs/sw.js').then(function(registration) {
       // Registration was successful
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
     }, function(err) {
@@ -25,7 +25,6 @@ if ('serviceWorker' in navigator) {
       console.log('ServiceWorker registration failed: ', err);
     });
   });
-  }
 
   window.addEventListener('beforeinstallprompt', function(e) {
   // beforeinstallprompt Event fired
@@ -44,3 +43,7 @@ if ('serviceWorker' in navigator) {
     }
   });
 });
+
+  }
+
+  

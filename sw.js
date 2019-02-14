@@ -11,12 +11,14 @@ self.addEventListener('push', function(event) {
 */
 
 
-var CACHE_NAME = 'my-site-cache-v1';
+var CACHE_NAME = 'my-test-site-cache';
 var urlsToCache = [
-  '/',
-  '/js/main.js'
+  '/a2hs/',
+  '/a2hs/js/main.js',
+  '/a2hs/images/mobile180x180.png'
 ];
 
+/*
 self.addEventListener('install', function(event) {
   // Perform install steps
   event.waitUntil(
@@ -27,6 +29,23 @@ self.addEventListener('install', function(event) {
       })
   );
 });
+*/
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open('cache-name').then(function(cache) {
+      return cache.addAll([
+		  '/a2hs/',
+		  '/a2hs/js/main.js',
+		  '/a2hs/images/mobile180x180.png'
+           ]);
+    }).then(function(){
+      console.log('설치완료');
+    }).catch(function(){
+      console.log('설치실패');
+    })
+  );
+});
+
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(
