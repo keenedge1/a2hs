@@ -1,12 +1,422 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-  <title>Push Notification codelab</title>
-  <link rel="manifest" href="/a2hs/manifest.json">
+    <title>띵커벨 학생화면</title>
+	<link rel="manifest" href="/a2hs/manifest.json">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+	<link rel="manifest" href="/manifest.json" />
+	<link rel="mask-icon" sizes="any" href="/asset/images/student/common/mobile180x180.png" color="#1da1f2">
+	<link rel="shortcut icon" href="/asset/images/student/common/mobile180x180.png" type="image/x-icon">
+	<link rel="apple-touch-icon-precomposed" href="/asset/images/student/common/mobile180x180.png" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-title" content="TESTTEST" />
+    <link href="/asset/css/style.student.css" rel="stylesheet" />
+    <!--[if lt IE 9]><script type="text/javascript" src="/asset/js/user/html5.js"></script><![endif]-->
 </head>
+
+
 <body>
-  <h1>Push Notification codelab</h1>
-  <p>This page must be accessed using HTTPS or via localhost.</p>
-  <script src="js/main.js"></script>
+	<div class="login-wrap">
+		<header class="logo-header">
+			<h1>띵커벨</h1>
+		</header>
+		<div class="login-container">
+			<form id="fr," name="frm" target="_top" autocomplete="off" action="" method="post" onsubmit="return;">			
+				<fieldset class="login_form">
+					<legend class="hidden">로그인</legend>
+
+					<div class="input_row" id="pin-div">
+						<label for="classNum" class="hidden">반번호를 입력하세요.</label>
+						<input type="number" id="pinNumber" name="pinNumber" placeholder="반번호를 입력하세요." maxlength="6" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');maxLengthCheck(this);">
+					</div>
+					<p class="error-txt" id="pin-p-msg" style="display:none" tabindex="0">반번호를 입력해주세요.</p>
+
+					<div class="input_row" id="name-div">
+						<label for="studentNm" class="hidden">이름을 입력하세요.</label>
+						<input type="text" id="sender" name="sender" placeholder="이름을 입력하세요." maxlength="6" value="" />
+					</div>
+					<p class="error-txt"  id="name-p-msg" style="display:none" tabindex="0">이름을 입력해주세요.</p>
+
+					<div class="input_row" id="number-div">
+						<label for="studentNum" class="hidden">출석번호를 입력하세요.</label>
+						<input type="number" id="studentNum" name="studentNum" placeholder="출석번호를 입력하세요." maxlength="2" value=""  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');maxLengthCheck(this);"/>
+					</div>
+					<p class="error-txt" id="number-p-msg" style="display:none" tabindex="0">출석번호를 입력해주세요.</p>
+					<div class="input_row agree-row" id="agree-div">
+                        <label for="studentAgree">
+                            개인정보 수집 및 이용에 동의합니다.
+                            <input type="checkbox" name="studentagree" id="studentAgree">
+                        </label>
+                        <button type="button" onclick="$('#agreePopup').show();">자세히보기</button>                   
+                    </div>
+					<p class="error-txt" id="agree-p-msg" style="display:none" tabindex="0">개인정보 수집 및 이용에 동의하지 않는 경우 해당 서비스를 계속해서 이용할 수 없습니다.</p>
+				</fieldset>
+			</form>
+		</div>
+		<div class="btn-cont-btm">
+			<button type="button" title="입장하기" alt="입장하기" value="입장하기" class="btn spot" id="openpincheck">입장하기</button>
+		</div>
+	</div>
+	
+	<div class="popup" style="display:none;" id="agreePopup">
+        <div class="pop-container">
+           <div class="pop-header">
+               <h1>개인정보 수집 및 이용 동의</h1>
+           </div>
+           <div class="pop-body">
+               <div class="privacy-container">
+                   <h2></h2>
+                   <p>띵커벨 서비스 이용에 대한 정보제공 동의는 의무사항이 아니므로, 띵커벨 서비스 이용을 원하지 않는 경우 동의하지 않아도 됩니다.</p>
+				   <p>다만, 정보제공에 동의하지 않는 경우 띵커벨 서비스를 계속해서 이용할 수 없습니다.</p>
+                   <div class="privacy-txt">
+                   		1. 수집이용목적 : 학급에서의 수업활동 (띵커벨 서비스)<br />
+						2. 수집항목 : 성명, 학년, 반, 번호<br />
+						3. 이용 및 보유기간 : 삭제요청 및 서비스운영 시까지<br /><br />
+
+
+                       만 14세 미만 아동의 경우 반드시 부모님(법적 대리인)의 동의가 필요하며, 수집한 개인정보는 본인(정보주체)의 동의 없이 수집한 목적 외로 사용하거나 제 3자에게 제공되지 않습니다.<br />                       
+                   </div>
+               </div>		
+               <div class="btn-cont">
+                   <a href="javascript:void(0);" class="btn spot" onclick="$('#agreePopup').hide();">확인</a>
+               </div>
+           </div>
+        </div>
+    </div>
+<!-- 
+<form name="frm" action="" method="post">
+
+반번호 : <input type="text" id="pinNumber" name="pinNumber" value="123123"> <br>
+이름 : <input type="text" id="sender" name="sender" value="한글이" > <br>
+출석번호 : <input type="text" id="studentNum" name="studentNum"> <br>
+<input type="button" value="입장" id="openpincheck"> <br>
+</form>
+ -->
+
 </body>
+
+	 <script src="js/main.js"></script>
+	<script src="/asset/js/jquery-1.12.4.min.js"></script>
+    <script src="/asset/js/jquery-ui.min.js"></script>
+    <script src="/asset/js/common.student.js"></script>
+<script>
+
+
+$("#sender").keyup(function(event){
+	regexp = /[^a-zA-Z0-9ㄱ-ㅎ가-힣ㅏ-ㅣ\u318D\u119E\u11A2\u2022\u2025a\u00B7\uFE55]/gi; 
+	  //regexp = /^[가-힣a-zA-Z]+$/g 
+	  v = $('#sender').val();
+	  
+	  if( regexp.test(v) ) {
+	    $('#sender').val( v.replace(regexp,''));
+	  }
+});
+
+function maxLengthCheck(object){
+    if (object.value.length > object.maxLength){
+      object.value = object.value.slice(0, object.maxLength);
+    }    
+}
+
+
+
+$(window).bind("pageshow", function(event) {
+    if (event.originalEvent.persisted) {
+         window.location.reload() 
+    }
+}); 
+
+history.pushState(null, null, location.href);
+window.onpopstate = function () {
+	
+    	//history.go(1);
+ 
+}; 
+
+
+var webSocket   = null;
+var ws_protocol = null;
+var ws_hostname = null;
+var ws_port     = null;
+var ws_endpoint = null;
+ 
+var webSocketURL = null;
+ 
+// webSocketURL = connectUrl;
+
+ //webSocketURL = "ws://devwebsoket.sigongmedia.co.kr:28080/quiz/websocket";
+ 
+//	${wsInfo.websocketUrl}
+ 
+var pinNumber = "";
+var sender ="";
+ 
+var settingData = new Object();
+	
+var settingdatajson =JSON.stringify(settingData);
+
+var webSocket;
+
+var joinMode;
+function connect_ws(){
+	try{
+		//console.log("openWSConnection::Connecting to: " + webSocketURL);
+		webSocket = new WebSocket(webSocketURL);
+	    webSocket.onopen = function(openEvent) {
+	    	console.log("WebSocket open");
+	        if (webSocket.readyState != WebSocket.OPEN) {
+	      		console.log('연결 실패');
+	        }else{
+	        	webSocket.send(settingdatajson);
+	        }
+	    };
+	    webSocket.onclose = function (closeEvent) {
+	    	console.log("WebSocket close");
+	    };
+	    webSocket.onerror = function (errorEvent) {
+	    	console.log("WebSocket error");
+	    };
+	    webSocket.onmessage = function (messageEvent) {
+	        var wsMsg = messageEvent.data;
+	        if (wsMsg.indexOf("error") > 0) {
+	      
+	        	errorEvent(wsMsg.error);
+	      
+	        } else {
+	      
+	        	receiveEvent(wsMsg);
+	        }
+	    };
+	} catch (exception) {
+	    console.error(exception);
+	    alert("서버 연결이 불가능 합니다.");
+	}
+}
+
+$('#pinNumber').click(function(){
+	$('#pin-div').removeClass('input_err');
+	$('#pin-p-msg').hide()
+	return;
+});
+
+$('#sender').click(function(){
+	$('#name-div').removeClass('input_err');
+	$('#name-p-msg').hide()
+	return;
+});
+
+
+$('#studentNum').click(function(){
+	$('#number-div').removeClass('input_err');
+	$('#number-p-msg').hide()
+	return;
+});
+
+$('#studentAgree').click(function(){
+	if( $("input:checkbox[id='studentAgree']").is(":checked") ){
+		$('#agree-div').removeClass('input_err');
+		$('#agree-p-msg').hide();
+		return;
+	}
+});
+
+
+$("input:checkbox[id='studentAgree']").click(function(){
+	if( !$("input:checkbox[id='studentAgree']").is(":checked") ){
+		$("#pinNumber").attr("readonly",false); 
+		$("#sender").attr("readonly",false);
+		$("#studentNum").attr("readonly",false);
+	}
+});
+
+  
+ $('#openpincheck').click(function(){
+	
+	if( !$('#pinNumber').val() ){
+		$('#pin-div').addClass('input_err');
+		$('#pin-p-msg').html('반번호를 입력해주세요.');
+		$('#pin-p-msg').show();
+		return;
+	}
+	
+	if( !$('#sender').val() ){
+		$('#name-div').addClass('input_err');
+		$('#name-p-msg').show();
+		return;
+	}
+	
+	$('#studentNum').val(   Number( $('#studentNum').val() )  );
+	
+	if( !$('#studentNum').val() ){
+		$('#number-div').addClass('input_err');
+		$('#number-p-msg').show();
+		return;
+	}
+	
+	if( !$("input:checkbox[id='studentAgree']").is(":checked") ){
+		$('#agree-div').addClass('input_err');
+		$('#agree-p-msg').show();
+		return;
+	}
+	
+	 
+	var value='pinNumber='+$('#pinNumber').val();
+    $.ajax({
+        url:'./pinNumberCheck.do',
+        data: value,
+        dataType:'json',
+        success:function(rlt){
+        	//$('#test').append(data);
+        	if(rlt.success){
+				var data = rlt.data.server;
+        		//console.log(data.websocketUrl);
+        		
+	        	webSocketURL = data.websocketUrl;
+	        	pinNumber = data.roomKey;
+	        	sender = $('#sender').val();
+        		
+	        	settingData.mode = 'check';
+	        	settingData.pinNumber = pinNumber;
+	        	settingData.sender = sender;
+	        	settingData.studentNum = $('#studentNum').val();
+	        	settingData.studentId = $('#pinNumber').val()+"_"+$('#sender').val()+"_"+$('#studentNum').val();
+	        	settingData.message = "";
+	        		
+	        	settingdatajson =JSON.stringify(settingData);
+	        	
+	        	connect_ws();
+        		
+        	}else{
+        		$('#pin-div').addClass('input_err');
+        		$('#pin-p-msg').html('반 번호를 다시 확인해주세요.');
+        		$('#pin-p-msg').show();
+        	}
+        }
+    });
+});
+
+ 
+function receiveEvent(wsMsg){
+  	var jsondata = JSON.parse(wsMsg);
+  	//console.log(jsondata);
+  	if( jsondata.mode == 'result' ){
+ 		if( jsondata.message == "Y"){
+ 			if( jsondata.data == "Y"){
+ 				var pingData = new Object();
+	     	 	pingData.mode = "ping";
+	     	 	pingData.pinNumber = settingData.pinNumber;
+	     	 	pingData.sender = settingData.sender;
+	     	 	pingData.message = "";
+	     	 	pingData.data = "";
+	     	 	var pingInfo = JSON.stringify(pingData);
+	     	 	
+	     	 	webSocket.send(pingInfo);
+	     	 	
+ 				//
+ 			}else{
+ 				alert('사용중');
+ 			}
+  			
+ 		}else{
+ 			$('#pin-div').addClass('input_err');
+ 			$('#pin-p-msg').html('핀번호가 없습니다.');
+ 			$('#pin-p-msg').show();
+ 		}
+ 		return;
+ 	}
+  	
+  	if( jsondata.mode == 'checkUrl' ){
+  		if( jsondata.data == 'null'){
+  			joinMode="newJoin";
+  		}
+  		
+  		if( jsondata.data != 'null' ){
+  			joinMode="countine";
+  		}
+  		
+  		studentchk();	
+  	}
+}
+
+//checkId
+
+function studentchk(){
+	
+	var name = escape(encodeURIComponent($('#sender').val()));
+	var value='joinMode='+joinMode+'&sender='+name+'&studentNum='+$('#studentNum').val()+'&pinNumber='+$('#pinNumber').val();
+    $.ajax({
+        url:'./studentInfoCheck.do',
+        data: value,
+        dataType:'json',
+       
+        success:function(rlt){
+        	if(rlt.success){
+				// frm.action = 'questionSelectRoom.do';
+        		webSocket.close();
+        		
+        		setCookie('pinNumber', $('#pinNumber').val() , 1800);
+        		setCookie('sender', $('#sender').val() , 1800);
+        		setCookie('studentNum', $('#studentNum').val() , 1800);
+        		
+        		// frm.action = 'questionViewStudent.do';
+        		frm.action = 'questionReady.do';
+        		frm.submit();
+        	}else{
+        		if(rlt.data.status == 'notJoin'){
+        			alert('중간 입장은 할수 없습니다.');
+        		}
+        	}
+        	
+        }
+    });
+}
+
+var setCookie = function(name, value, exp) {
+	  var date = new Date();
+	  date.setTime(date.getTime() + exp*1000);
+	  document.cookie = name + '=' + escape(value) + ';expires=' + date.toUTCString() + ';path=/';
+	};
+var getCookie = function(name) {
+	  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+	  return value? value[2] : null;
+	};
+
+var deleteCookie = function(name) {
+	  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+};
+
+setCookie('nowUrl', '' , 600);
+setCookie('quizIdx', '', 600);
+setCookie('questionIdx', '', 600);
+
+
+ 
+
+//window.history.forward(1);
+
+if( getCookie('pinNumber') ){
+	$('#pinNumber').val( getCookie('pinNumber') );
+	$("#pinNumber").attr("readonly",true); 
+}
+
+if( getCookie('sender') ){
+	$('#sender').val( unescape(getCookie('sender')) );
+	$("#sender").attr("readonly",true);
+}
+
+if( getCookie('studentNum') ){
+	$('#studentNum').val( getCookie('studentNum') );
+	$("#studentNum").attr("readonly",true);
+	$("input:checkbox[id='studentAgree']").prop("checked", true);
+}
+
+</script>
+
 </html>
