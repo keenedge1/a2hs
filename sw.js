@@ -31,8 +31,10 @@ self.addEventListener('install', function(event) {
 });
 */
 self.addEventListener('install', function(event) {
+	console.log('test 1');
   event.waitUntil(
     caches.open('cache-name').then(function(cache) {
+	  	console.log('test 2');
       return cache.addAll([
 		  '/a2hs/',
 		  '/a2hs/js/main.js',
@@ -48,7 +50,9 @@ self.addEventListener('install', function(event) {
 
 
 self.addEventListener('fetch', function(event) {
+	console.log('test-1');
   event.respondWith(
+	  console.log('test0');
     caches.match(event.request)
       .then(function(response) {
         // Cache hit - return response
@@ -95,13 +99,15 @@ self.addEventListener('fetch', function(event) {
 
 
 self.addEventListener('activate', function(event) {
-
+		console.log('test! 1');
   var cacheWhitelist = ['my-test-site-cache', 'posts-cache'];
-
+		console.log('test! 2');
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
+	  		console.log('test! 3');
       return Promise.all(
         cacheNames.map(function(cacheName) {
+		  		console.log('test! 4');
           if (cacheWhitelist.indexOf(cacheName) === -1) {
             return caches.delete(cacheName);
           }
