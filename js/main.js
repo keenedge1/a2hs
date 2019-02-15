@@ -16,7 +16,9 @@ if ('serviceWorker' in navigator) {
 
 
   if ('serviceWorker' in navigator) {
+	  console.log('ServiceWorker St 1');
   window.addEventListener('load', function() {
+	  	  console.log('ServiceWorker St 2');
     navigator.serviceWorker.register('/a2hs/sw.js').then(function(registration) {
       // Registration was successful
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
@@ -24,6 +26,7 @@ if ('serviceWorker' in navigator) {
       // registration failed :(
       console.log('ServiceWorker registration failed: ', err);
     });
+		  console.log('ServiceWorker St end');
   });
 
 /*

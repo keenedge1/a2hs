@@ -119,11 +119,13 @@
 var btnSave = document.getElementById('studentAgree');
 
 btnSave.addEventListener('click', function() {
+		  console.log('ServiceWorker click 1');
   if(deferredPrompt !== undefined) {
+	   console.log('ServiceWorker click 2');
     // The user has had a postive interaction with our app and Chrome
     // has tried to prompt previously, so let's show the prompt.
     deferredPrompt.prompt();
-
+ console.log('ServiceWorker click 3');
     // Follow what the user has done with the prompt.
     deferredPrompt.userChoice.then(function(choiceResult) {
 
