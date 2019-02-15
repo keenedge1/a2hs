@@ -62,7 +62,7 @@
 			</form>
 		</div>
 		<div class="btn-cont-btm">
-			<button type="button" title="입장하기" alt="입장하기" value="입장하기" class="btn spot" id="openpincheck">입장하기</button>
+			<button type="button" title="다음1" alt="다음1" value="다음1" class="btn spot" id="openpincheck">다음1</button>
 		</div>
 	</div>
 	
@@ -239,6 +239,10 @@ $("input:checkbox[id='studentAgree']").click(function(){
 
   
  $('#openpincheck').click(function(){
+
+	 frm.action = 'index2.html';
+     frm.submit();
+
 	
 	if( !$('#pinNumber').val() ){
 		$('#pin-div').addClass('input_err');
