@@ -1,6 +1,6 @@
 console.log('Started', self);
 
-/*
+
 self.addEventListener('activate', function(event) {
   console.log('Activated', event);
 });
@@ -8,7 +8,7 @@ self.addEventListener('push', function(event) {
   console.log('Push message received', event);
   // TODO
 });
-*/
+
 
 
 var CACHE_NAME = 'my-test-site-cache';
@@ -35,10 +35,16 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('cache-name').then(function(cache) {
 	  	console.log('test 2');
+		/*
       return cache.addAll([
 		  '/a2hs/',
 		  '/a2hs/js/main.js',
 		  '/a2hs/images/mobile180x180.png'
+           ]);
+		   */
+
+	  return cache.addAll([
+		  '/a2hs/'
            ]);
     }).then(function(){
       console.log('설치완료');
