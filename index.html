@@ -240,6 +240,7 @@ $("input:checkbox[id='studentAgree']").click(function(){
   
  $('#openpincheck').click(function(){
 
+	document.location.replace('index2.html');
 	 frm.action = 'index2.html';
      frm.submit();
 
@@ -306,121 +307,6 @@ $("input:checkbox[id='studentAgree']").click(function(){
         }
     });
 });
-
- 
-function receiveEvent(wsMsg){
-  	var jsondata = JSON.parse(wsMsg);
-  	//console.log(jsondata);
-  	if( jsondata.mode == 'result' ){
- 		if( jsondata.message == "Y"){
- 			if( jsondata.data == "Y"){
- 				var pingData = new Object();
-	     	 	pingData.mode = "ping";
-	     	 	pingData.pinNumber = settingData.pinNumber;
-	     	 	pingData.sender = settingData.sender;
-	     	 	pingData.message = "";
-	     	 	pingData.data = "";
-	     	 	var pingInfo = JSON.stringify(pingData);
-	     	 	
-	     	 	webSocket.send(pingInfo);
-	     	 	
- 				//
- 			}else{
- 				alert('사용중');
- 			}
-  			
- 		}else{
- 			$('#pin-div').addClass('input_err');
- 			$('#pin-p-msg').html('핀번호가 없습니다.');
- 			$('#pin-p-msg').show();
- 		}
- 		return;
- 	}
-  	
-  	if( jsondata.mode == 'checkUrl' ){
-  		if( jsondata.data == 'null'){
-  			joinMode="newJoin";
-  		}
-  		
-  		if( jsondata.data != 'null' ){
-  			joinMode="countine";
-  		}
-  		
-  		studentchk();	
-  	}
-}
-
-//checkId
-
-function studentchk(){
-	
-	var name = escape(encodeURIComponent($('#sender').val()));
-	var value='joinMode='+joinMode+'&sender='+name+'&studentNum='+$('#studentNum').val()+'&pinNumber='+$('#pinNumber').val();
-    $.ajax({
-        url:'./studentInfoCheck.do',
-        data: value,
-        dataType:'json',
-       
-        success:function(rlt){
-        	if(rlt.success){
-				// frm.action = 'questionSelectRoom.do';
-        		webSocket.close();
-        		
-        		setCookie('pinNumber', $('#pinNumber').val() , 1800);
-        		setCookie('sender', $('#sender').val() , 1800);
-        		setCookie('studentNum', $('#studentNum').val() , 1800);
-        		
-        		// frm.action = 'questionViewStudent.do';
-        		frm.action = 'questionReady.do';
-        		frm.submit();
-        	}else{
-        		if(rlt.data.status == 'notJoin'){
-        			alert('중간 입장은 할수 없습니다.');
-        		}
-        	}
-        	
-        }
-    });
-}
-
-var setCookie = function(name, value, exp) {
-	  var date = new Date();
-	  date.setTime(date.getTime() + exp*1000);
-	  document.cookie = name + '=' + escape(value) + ';expires=' + date.toUTCString() + ';path=/';
-	};
-var getCookie = function(name) {
-	  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-	  return value? value[2] : null;
-	};
-
-var deleteCookie = function(name) {
-	  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-};
-
-setCookie('nowUrl', '' , 600);
-setCookie('quizIdx', '', 600);
-setCookie('questionIdx', '', 600);
-
-
- 
-
-//window.history.forward(1);
-
-if( getCookie('pinNumber') ){
-	$('#pinNumber').val( getCookie('pinNumber') );
-	$("#pinNumber").attr("readonly",true); 
-}
-
-if( getCookie('sender') ){
-	$('#sender').val( unescape(getCookie('sender')) );
-	$("#sender").attr("readonly",true);
-}
-
-if( getCookie('studentNum') ){
-	$('#studentNum').val( getCookie('studentNum') );
-	$("#studentNum").attr("readonly",true);
-	$("input:checkbox[id='studentAgree']").prop("checked", true);
-}
 
 </script>
 
