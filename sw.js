@@ -50,9 +50,8 @@ self.addEventListener('install', function(event) {
 
 
 self.addEventListener('fetch', function(event) {
-	console.log('test-1');
+		console.log('test0');
   event.respondWith(
-	  console.log('test0');
     caches.match(event.request)
       .then(function(response) {
         // Cache hit - return response
