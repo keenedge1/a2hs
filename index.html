@@ -29,31 +29,31 @@
 			<h1>띵커벨1</h1>
 		</header>
 		<div class="login-container">
-			<form id="frm" name="frm" action="" method="post" >			
+			<form id="frm" name="frm" target="_top" autocomplete="off" action="" method="post" onsubmit="return;">			
 				<fieldset class="login_form">
 					<legend class="hidden">로그인</legend>
 
 					<div class="input_row" id="pin-div">
-						<label for="classNum" class="hidden">반번호를 입력하세요.</label>
-						<input type="number" id="pinNumber" name="pinNumber" placeholder="반번호를 입력하세요." maxlength="6" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');maxLengthCheck(this);">
+						<label for="classNum" class="hidden">방번호를 입력하세요.</label>
+						<input type="number" id="pinNumber" name="pinNumber" placeholder="방번호를 입력하세요." maxlength="6" value="" onkeyup="checkPinNumber(this.value);" oninput="maxLengthCheck(this);">
 					</div>
-					<p class="error-txt" id="pin-p-msg" style="display:none" tabindex="0">반번호를 입력해주세요.</p>
+					<p class="error-txt" id="pin-p-msg" style="display:none" tabindex="0">방번호를 입력해주세요.</p>
 
 					<div class="input_row" id="name-div">
-						<label for="studentNm" class="hidden">이름을 입력하세요.</label>
-						<input type="text" id="sender" name="sender" placeholder="이름을 입력하세요." maxlength="6" value="" />
+						<label for="studentNm" class="hidden">닉네임을 입력하세요.</label>
+						<input type="text" id="sender" name="sender" placeholder="닉네임을 입력하세요." maxlength="6" value="" />
 					</div>
-					<p class="error-txt"  id="name-p-msg" style="display:none" tabindex="0">이름을 입력해주세요.</p>
+					<p class="error-txt"  id="name-p-msg" style="display:none" tabindex="0">닉네임을 입력해주세요.</p>
 
-					<div class="input_row" id="number-div">
+					<div class="input_row" id="number-div" style="display:none" >
 						<label for="studentNum" class="hidden">출석번호를 입력하세요.</label>
-						<input type="number" id="studentNum" name="studentNum" placeholder="출석번호를 입력하세요." maxlength="2" value=""  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');maxLengthCheck(this);"/>
+						<input type="number" id="studentNum" name="studentNum" placeholder="출석번호를 입력하세요." maxlength="2" value="1" onkeyup="checkStNumber(this.value);" oninput="maxLengthCheck(this);"/>
 					</div>
 					<p class="error-txt" id="number-p-msg" style="display:none" tabindex="0">출석번호를 입력해주세요.</p>
-					<div class="input_row agree-row" id="agree-div">
+					<div class="input_row agree-row" id="agree-div" style="display:none">
                         <label for="studentAgree">
                             개인정보 수집 및 이용에 동의합니다.
-                            <input type="checkbox" name="studentagree" id="studentAgree">
+                            <input type="checkbox" name="studentagree" id="studentAgree" checked>
                         </label>
                         <button type="button" onclick="$('#agreePopup').show();">자세히보기</button>                   
                     </div>
