@@ -116,9 +116,19 @@
  $('#openpincheck').click(function(){
 
 	//document.location.replace('index1.html');
-	frm.action="http://q.tkbell.co.kr/student/joinpinnumber.do";
-	frm.submit();
+	//frm.action="http://q.tkbell.co.kr/student/joinpinnumber.do";
+	//frm.submit();
 	//document.location.replace('http://q.tkbell.co.kr/student/joinpinnumber.do');
+
+	
+	  var stnum = $('#studentNum').val();
+	  var pinnum = $('#pinNumber').val();
+	  var sender = $('#sender').val();
+	
+	  
+	 document.location.replace('http://q.tkbell.co.kr/student/questionReady.do?studentNum='+stnum+'&pinNumber='+pinnum+'&sender='+sender );
+		
+	 return;
 	
 });
 
